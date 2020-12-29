@@ -1,0 +1,39 @@
+{
+    "name": "Twitch get timestamp",
+    "manifest_version": 2,
+    "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'",
+    "version": "1.0",
+    "description": "Get the timestamp from current live",
+    "content_scripts": [
+        {
+            "matches": [
+                "http://*/*"
+            ],
+            "js": [
+                "jquery-3.5.1.min.js",
+                "scripts.js"
+            ]
+        }
+    ],
+    "icons": {
+        "1": "icontwitchgettime.png"
+    },
+    "browser_action": {
+        "default_popup": "popup.html",
+        "default_title": "Get Twitch TimeStamp"
+    },
+    "background": {
+        "scripts": [
+            "jquery-3.5.1.min.js",
+            "background.js"
+        ]
+    },
+    "permissions": [
+        "tabs",
+        "notifications",
+        "http://*/",
+        "https://*/",
+        "storage",
+        "downloads"
+    ]
+}

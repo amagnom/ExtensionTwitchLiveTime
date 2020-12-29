@@ -1,7 +1,7 @@
 {
     "name": "Twitch get timestamp",
+    "author": "Arildo Magno",
     "manifest_version": 2,
-    "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'",
     "version": "1.0",
     "description": "Get the timestamp from current live",
     "content_scripts": [
@@ -10,8 +10,7 @@
                 "http://*/*"
             ],
             "js": [
-                "jquery-3.5.1.min.js",
-                "scripts.js"
+                "popup.js"
             ]
         }
     ],
@@ -21,12 +20,6 @@
     "browser_action": {
         "default_popup": "popup.html",
         "default_title": "Get Twitch TimeStamp"
-    },
-    "background": {
-        "scripts": [
-            "jquery-3.5.1.min.js",
-            "background.js"
-        ]
     },
     "permissions": [
         "tabs",

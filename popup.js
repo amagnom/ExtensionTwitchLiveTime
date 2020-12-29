@@ -10,13 +10,11 @@ chrome.runtime.onMessage.addListener(function (request, sender) {
 
 function onWindowLoad() {
     var resultFinally = "";
-
     var dataSaved = "";
     var message = document.querySelector('#message');
     document.querySelector('#btnsave').addEventListener('click', onclicksave, false)
     document.querySelector('#btndownload').addEventListener('click', onclickdownload, false)
     document.querySelector('#btnclear').addEventListener('click', onclickclear, false)
-
 
     chrome.tabs.executeScript(null, {
         file: "getPagesSource.js"
@@ -26,22 +24,16 @@ function onWindowLoad() {
         }
     });
 
-    // Load local storage
     chrome.storage.sync.get(['twitchtimestamp'], function (items) {
         if (items.twitchtimestamp) {
             dataSaved = items.twitchtimestamp;
         }
     });
 
-
-
     function onclicksave() {
         let text = "";
         let timeStamp = "";
-
         textHtml = document.querySelector('#text').value;
-    
-
         if (timeStampLive) {
             timeStamp = timeStampLive;
         }
@@ -55,50 +47,34 @@ function onWindowLoad() {
         else {
             text = "Text not informed";
         }
-
         resultFinally = text + " - " + timeStamp + "\n";
         document.querySelector('#result').innerHTML = resultFinally;
-
-
-
-
-        // Load local storage
+        
         chrome.storage.sync.get(['twitchtimestamp'], function (items) {
             if (items.twitchtimestamp) {
                 dataSaved = items.twitchtimestamp;
             }
         });
-        //Save in local storage
+    
         let newItemSave = dataSaved + resultFinally;
         chrome.storage.sync.set({ 'twitchtimestamp': newItemSave }, function () {
             console.log('Settings saved');
         });
     }
 
-
-
     function onclickdownload() {
-        // Read it using the storage API
         var textToDownload = "";
         chrome.storage.sync.get(['twitchtimestamp'], function (items) {
             textToDownload = items.twitchtimestamp;
             dataSaved = dataSaved + textToDownload;
-
-
             var blob = new Blob([dataSaved], { type: "text/plain" });
             var url = URL.createObjectURL(blob);
             chrome.downloads.download({
-                url: url, // The object URL can be used as download URL
+                url: url,
                 filename: 'Texto.txt'
             });
         });
-
-
-
-
-
     }
-
 
     function onclickclear() {
         chrome.storage.local.remove(["twitchtimestamp"], function () {
@@ -113,12 +89,7 @@ function onWindowLoad() {
             console.log('Settings saved');
         });
     }
-
-
-
-
 }
-
 
 window.onload = onWindowLoad;
 

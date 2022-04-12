@@ -1,6 +1,8 @@
-## Google Chrome Extension Twitch Live Time
+# Google Chrome Extension Twitch Live Time
 
-An extension with several functions to assist twich users / editors
+### Extension with several functions to assist twich users / editors
+
+### Extensão com várias funções para auxiliar seus usuários/editores
 
 
 Example of using the extension
